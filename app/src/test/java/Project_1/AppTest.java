@@ -7,10 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AppTest {
-    @Test void testConstructor() {
-        int a=1;
-        assertTrue(App.s(a));
-    }
+    
     @Test void tst1(){
         int[] b={2,4,7,8};
         try{

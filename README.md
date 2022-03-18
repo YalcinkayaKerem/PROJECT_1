@@ -1,2 +1,2 @@
 # PROJECT_1
-find()
+[![CircleCI](https://circleci.com/gh/YalcinkayaKerem/PROJECT_1/tree/main.svg?style=svg)](https://circleci.com/gh/YalcinkayaKerem/PROJECT_1/tree/main)

@@ -36,7 +36,7 @@ public class App {
     public static void main(String[] args) {
         port(getHerokuAssignedPort());
 
-        get("/", (req, res) -> "Hello, World");
+        get("/", (req, res) -> "Welcome, add \"\\compute\"to URL to go next page ");
 
         post("/compute", (req, res) -> {
           //System.out.println(req.queryParams("input1"));
@@ -53,15 +53,28 @@ public class App {
           }
           sc1.close();
           System.out.println(inputList);
-
-
-          String input2 = req.queryParams("input2").replaceAll("\\s","");
+          
+          int[] arrInt= new int[inputList.size()];
+          for(int i=0;i<inputList.size();i++)
+              arrInt[i]=inputList.get(i);
+          
+              String input2 = req.queryParams("input2").replaceAll("\\s","");
           int input2AsInt = Integer.parseInt(input2);
+          
 
-          boolean result = App.search(inputList, input2AsInt);
-
-          Map<String, Boolean> map = new HashMap<String, Boolean>();
-          map.put("result", result);
+          String input3 = req.queryParams("input3").replaceAll("\\s","");
+          int input3AsInt = Integer.parseInt(input3);
+          
+          Map map=null;
+          try{
+            int result = App.find(arrInt, input2AsInt,input3AsInt);
+            map = new HashMap<String, Integer>();
+            map.put("result", result);
+          }catch(Exception e){
+            map = new HashMap<String, String>();
+            map.put("result", e.toString());
+          }
+          
           return new ModelAndView(map, "compute.mustache");
         }, new MustacheTemplateEngine());
 
